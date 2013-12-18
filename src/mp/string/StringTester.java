@@ -46,5 +46,19 @@ public class StringTester {
       }
       System.out.println(occurence + " : " + indeces.trim());
     }
+
+    int k = Integer.parseInt((String) contents.retrieve(n + n * m + i + j + 4));;
+    for (int x = n + n * m + i + j + 5, y = 0; y < k; y++) {
+      String[] line = ((String) contents.retrieve(x + y)).split(" ");
+      String str = line[1];
+      if (line[0].equals("2")) {
+        str = line[1] + line[2];
+      }
+      String reversed = "";
+      for (int z = str.length() - 1; z >= 0; z--) {
+        reversed += str.charAt(z);
+      }
+      System.out.println(reversed);
+    }
   }
 }
