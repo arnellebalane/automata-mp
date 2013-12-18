@@ -23,5 +23,11 @@ public class StringTester {
         y++;
       }
     }
+
+    int i = Integer.parseInt((String) contents.retrieve(n + 2 + n * m));
+    for (int x = n + 3 + n * m, y = 0; y < i; y++) {
+      String[] pair = ((String) contents.retrieve(x + y)).split(" ");
+      System.out.println(pair[0].indexOf(pair[1]) >= 0);
+    }
   }
 }
