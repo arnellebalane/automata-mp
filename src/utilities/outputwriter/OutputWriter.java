@@ -5,13 +5,12 @@ import java.io.File;
 import java.io.FileWriter;
 
 public class OutputWriter {
-  private FileWriter writer;
+  private File output;
 
   public OutputWriter(String path) {
     try {
-      File output = new File(path);
+      output = new File(path);
       output.createNewFile();
-      writer = new FileWriter(output, true);
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
@@ -19,7 +18,8 @@ public class OutputWriter {
 
   public void write(String line) {
     try {
-      writer.write(line);
+      FileWriter writer = new FileWriter(output, true);
+      writer.write(line + "\n");
       writer.flush();
       writer.close();
     } catch (Exception e) {

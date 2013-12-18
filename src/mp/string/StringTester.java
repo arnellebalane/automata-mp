@@ -3,10 +3,12 @@ package mp.string;
 
 import utilities.inputreader.InputReader;
 import utilities.nodelist.NodeList;
+import utilities.outputwriter.OutputWriter;
 
 public class StringTester {
   public static void main(String[] args) {
-    NodeList contents = InputReader.read("inputs/mp/string/input.in");
+    NodeList contents = InputReader.read("inputs/mp/string/mp2.in");
+    OutputWriter output = new OutputWriter("outputs/mp/string/mp2.out");
 
     int n = Integer.parseInt((String) contents.retrieve(0));
     Alphabet[] alphabets = new Alphabet[n];
@@ -18,7 +20,7 @@ public class StringTester {
     int m = Integer.parseInt((String) contents.retrieve(n + 1));
     for (int x = n + 2, y = 0; x < n + n * m + 2; x++) {
       String str = (String) contents.retrieve(x);
-      System.out.println(alphabets[y].forms(str));
+      output.write((alphabets[y].forms(str)) ? "true" : "false");
       if ((x - (n + 2)) % m == m - 1) {
         y++;
       }
@@ -27,7 +29,7 @@ public class StringTester {
     int i = Integer.parseInt((String) contents.retrieve(n + n * m + 2));
     for (int x = n + n * m + 3, y = 0; y < i; y++) {
       String[] pair = ((String) contents.retrieve(x + y)).split(" ");
-      System.out.println(pair[0].indexOf(pair[1]) >= 0);
+      output.write((pair[0].indexOf(pair[1]) >= 0) ? "true" : "false");
     }
 
     int j = Integer.parseInt((String) contents.retrieve(n + n * m + i + 3));
@@ -44,7 +46,7 @@ public class StringTester {
         offset += index + 1;
         index = pair[0].indexOf(pair[1]);
       }
-      System.out.println(occurence + " : " + indeces.trim());
+      output.write(occurence + " : " + indeces.trim());
     }
 
     int k = Integer.parseInt((String) contents.retrieve(n + n * m + i + j + 4));;
@@ -58,13 +60,13 @@ public class StringTester {
       for (int z = str.length() - 1; z >= 0; z--) {
         reversed += str.charAt(z);
       }
-      System.out.println(reversed);
+      output.write(reversed);
     }
 
     int l = Integer.parseInt((String) contents.retrieve(n + n * m + i + j + k + 5));
     for (int x = n + n * m + i + j + k + 6, y = 0; x < n + n * m + i + j + k + n * l + 6; x++) {
       int length = Integer.parseInt((String) contents.retrieve(x));
-      System.out.println(alphabets[y].generateUptoLength(length));
+      alphabets[y].generateUptoLength(length, output);
       if (x - (n + n * m + i + j + k + 6) % l == l - 1) {
         y++;
       }
