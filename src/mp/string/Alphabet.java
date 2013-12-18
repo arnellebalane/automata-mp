@@ -6,12 +6,17 @@ import mp.set.Set;
 public class Alphabet {
   private Set symbols;
 
-  public Alphabet() {
-    symbols = new Set();
-  }
-
   public Alphabet(String[] symbols) {
     this.symbols = new Set(symbols);
+  }
+
+  public boolean forms(String str) {
+    for (int i = 0; i < str.length(); i++) {
+      if (!symbols.contains("" + str.charAt(i))) {
+        return false;
+      }
+    }
+    return true;
   }
 
   @Override
