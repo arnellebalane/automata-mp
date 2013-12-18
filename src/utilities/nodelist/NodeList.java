@@ -88,7 +88,7 @@ public class NodeList<E> {
     if (index < size) {
       Node node = head;
       int i = 0;
-      while (i < index) {
+      while (i++ < index) {
         node = node.next();
       }
       return (E) node.element();
