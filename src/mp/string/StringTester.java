@@ -16,7 +16,7 @@ public class StringTester {
     }
 
     int m = Integer.parseInt((String) contents.retrieve(n + 1));
-    for (int x = n + 2, y = 0; x < n + 2 + n * m; x++) {
+    for (int x = n + 2, y = 0; x < n + n * m + 2; x++) {
       String str = (String) contents.retrieve(x);
       System.out.println(alphabets[y].forms(str));
       if ((x - (n + 2)) % m == m - 1) {
@@ -24,10 +24,27 @@ public class StringTester {
       }
     }
 
-    int i = Integer.parseInt((String) contents.retrieve(n + 2 + n * m));
-    for (int x = n + 3 + n * m, y = 0; y < i; y++) {
+    int i = Integer.parseInt((String) contents.retrieve(n + n * m + 2));
+    for (int x = n + n * m + 3, y = 0; y < i; y++) {
       String[] pair = ((String) contents.retrieve(x + y)).split(" ");
       System.out.println(pair[0].indexOf(pair[1]) >= 0);
+    }
+
+    int j = Integer.parseInt((String) contents.retrieve(n + n * m + i + 3));
+    for (int x = n + n * m + i + 4, y = 0; y < j; y++) {
+      String[] pair = ((String) contents.retrieve(x + y)).split(" ");
+      int occurence = 0;
+      String indeces = "";
+      int offset = 0;
+      int index = pair[0].indexOf(pair[1]);
+      while (index >= 0) {
+        occurence++;
+        indeces += (index + offset) + " ";
+        pair[0] = pair[0].substring(index + 1);
+        offset += index + 1;
+        index = pair[0].indexOf(pair[1]);
+      }
+      System.out.println(occurence + " : " + indeces.trim());
     }
   }
 }
