@@ -60,5 +60,14 @@ public class StringTester {
       }
       System.out.println(reversed);
     }
+
+    int l = Integer.parseInt((String) contents.retrieve(n + n * m + i + j + k + 5));
+    for (int x = n + n * m + i + j + k + 6, y = 0; x < n + n * m + i + j + k + n * l + 6; x++) {
+      int length = Integer.parseInt((String) contents.retrieve(x));
+      System.out.println(alphabets[y].generateUptoLength(length));
+      if (x - (n + n * m + i + j + k + 6) % l == l - 1) {
+        y++;
+      }
+    }
   }
 }
