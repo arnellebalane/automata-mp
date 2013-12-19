@@ -46,10 +46,16 @@ public class StringTester {
         offset += index + 1;
         index = pair[0].indexOf(pair[1]);
       }
-      output.write(occurence + " : " + indeces.trim());
+      output.write("" + occurence);
+      if (indeces.length() > 0) {
+        String[] indexArray = indeces.split(" ");
+        for (int z = 0; z < indexArray.length; z++) {
+          output.write(indexArray[z]);
+        }
+      }
     }
 
-    int k = Integer.parseInt((String) contents.retrieve(n + n * m + i + j + 4));;
+    int k = Integer.parseInt((String) contents.retrieve(n + n * m + i + j + 4));
     for (int x = n + n * m + i + j + 5, y = 0; y < k; y++) {
       String[] line = ((String) contents.retrieve(x + y)).split(" ");
       String str = line[1];
