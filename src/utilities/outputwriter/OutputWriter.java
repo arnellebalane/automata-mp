@@ -10,6 +10,9 @@ public class OutputWriter {
   public OutputWriter(String path) {
     try {
       output = new File(path);
+      if (output.exists()) {
+        output.delete();
+      }
       output.createNewFile();
     } catch (Exception e) {
       System.out.println(e.getMessage());
