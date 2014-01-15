@@ -14,16 +14,14 @@ public class NodeListIterator implements Iterator {
 
   @Override
   public boolean hasNext() {
-    return head.hasNext();
+    return head != null;
   }
 
   @Override
   public Node next() {
-    if (head.hasNext()) {
-      head = head.next();
-      return (Node) head;
-    }
-    return null;
+    Node node = head;
+    head = head.next();
+    return node;
   }
 
   @Override
