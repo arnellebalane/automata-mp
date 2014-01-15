@@ -57,7 +57,7 @@ public class Declaration {
 
   private boolean validFunction() {
     return declaration.charAt(declaration.length() - 1) == ';'
-            && validDataType(returnType) && validIdentifier() && validParameters();
+            && validDataType(returnType) && validIdentifier(identifier) && validParameters();
   }
 
   private boolean validVariable() {
@@ -89,12 +89,19 @@ public class Declaration {
         }
       }
     }
-    System.out.println(validDataTypes.contains(dataType) && validAsterisks && validBrackets);
     return validDataTypes.contains(dataType) && validAsterisks && validBrackets;
   }
 
-  private boolean validIdentifier() {
-    return false;
+  private boolean validIdentifier(String identifier) {
+    String characters = "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    String digits = "0123456789";
+    boolean validIdentifier = digits.indexOf(identifier.charAt(0)) == -1;
+    for (int i = 01; i < identifier.length() && validIdentifier; i++) {
+      if (characters.indexOf(identifier.charAt(i)) == -1 && digits.indexOf(identifier.charAt(i)) == -1) {
+        validIdentifier = false;
+      }
+    }
+    return !validDataTypes.contains(identifier) && validIdentifier;
   }
 
   private boolean validParameters() {
