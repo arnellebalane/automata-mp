@@ -21,7 +21,7 @@ public class NodeListIterator implements Iterator {
   public Node next() {
     if (head.hasNext()) {
       head = head.next();
-      return head;
+      return (Node) head;
     }
     return null;
   }
