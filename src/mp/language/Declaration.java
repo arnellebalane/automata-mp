@@ -6,7 +6,6 @@ import utilities.nodelist.NodeList;
 public class Declaration {
   public static NodeList validDataTypes;
   private String declaration;
-  private final String declarationType;
   private String returnType;
   private String identifier;
   private String[] parameters;
@@ -22,13 +21,7 @@ public class Declaration {
     validDataTypes.insert("double");
     validDataTypes.insert("char");
 
-    if (declaration.indexOf("=") == -1 && declaration.indexOf("(") >= 0) {
-      declarationType = "function";
-      parseFunction(declaration);
-    } else {
-      declarationType = "variable";
-      parseVariable(declaration);
-    }
+    parseFunction(declaration);
   }
 
   private void parseFunction(String declaration) {
@@ -45,25 +38,10 @@ public class Declaration {
     }
   }
 
-  private void parseVariable(String declaration) {
-    // TO BE IMPLEMENTED
-  }
-
   public boolean valid() {
-    if (declarationType.equals("function")) {
-      return validFunction();
-    }
-    return validVariable();
-  }
-
-  private boolean validFunction() {
     return declaration.charAt(declaration.length() - 1) == ';'
-            && validDataType(returnType) && validIdentifier(identifier) && validParameters();
-  }
-
-  private boolean validVariable() {
-    // TO BE IMPLEMENTED
-    return false;
+            && (returnType.equals("") || validDataType(returnType))
+            && validIdentifier(identifier) && validParameters();
   }
 
   private boolean validDataType(String dataType) {
@@ -112,8 +90,8 @@ public class Declaration {
         validParameters = validDataType(parameters[i]);
       } else {
         int separationIndex = parameters[i].lastIndexOf(" ");
-        String parameterDataType = parameters[i].substring(0, separationIndex);
-        String parameterIdentifier = parameters[i].substring(separationIndex + 1);
+        String parameterDataType = parameters[i].substring(0, separationIndex).trim();
+        String parameterIdentifier = parameters[i].substring(separationIndex + 1).trim();
         validParameters = validDataType(parameterDataType) && validIdentifier(parameterIdentifier);
       }
     }

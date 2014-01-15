@@ -1,7 +1,7 @@
 int         f223(void);
 float     function_(double,int);
 function3(int,int,int);
-void f2(int x,                   int,              doublen   w);
+void f2(int x,                   int,              double   w);
 int 23F();
 char F4( int )
 test function(void);
@@ -10,8 +10,8 @@ dobol function(int);
 int float(void);
 void integer(int float char double);
 int ____myFunction(void);
-int[] f3(char[]);
+int* f3(char[]);
 int* f5(char* st, char *st2);
 int** f(   );
 void* f(void);
-void f2(int x,                   int,              doublen   2w);
+void f2(int x,                   int,              double   2w);
