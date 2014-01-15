@@ -34,12 +34,13 @@ public class Declaration {
   private void parseFunction(String declaration) {
     int parametersStart = declaration.indexOf("(") + 1;
     int parametersEnd = declaration.indexOf(")");
-    parameters = declaration.substring(parametersStart, parametersEnd).split(",");
+    String parametersString = declaration.substring(parametersStart, parametersEnd).trim();
+    parameters = (parametersString.length() == 0) ? null : parametersString.split(",");
     declaration = declaration.substring(0, parametersStart - 1);
     int separationIndex = declaration.lastIndexOf(" ");
     returnType = (separationIndex == -1) ? "" : declaration.substring(0, separationIndex).trim();
     identifier = (separationIndex == -1) ? declaration : declaration.substring(separationIndex + 1).trim();
-    for (int i = 0; i < parameters.length; i++) {
+    for (int i = 0; parameters != null && i < parameters.length; i++) {
       parameters[i] = parameters[i].trim();
     }
   }
@@ -105,6 +106,17 @@ public class Declaration {
   }
 
   private boolean validParameters() {
-    return false;
+    boolean validParameters = true;
+    for (int i = 0; parameters != null && i < parameters.length && validParameters; i++) {
+      if (parameters[i].indexOf(" ") == -1) {
+        validParameters = validDataType(parameters[i]);
+      } else {
+        int separationIndex = parameters[i].lastIndexOf(" ");
+        String parameterDataType = parameters[i].substring(0, separationIndex);
+        String parameterIdentifier = parameters[i].substring(separationIndex + 1);
+        validParameters = validDataType(parameterDataType) && validIdentifier(parameterIdentifier);
+      }
+    }
+    return validParameters;
   }
 }
