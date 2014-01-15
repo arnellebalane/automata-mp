@@ -1,7 +1,9 @@
 
 package utilities.nodelist;
 
-public class NodeList<E> {
+import java.util.Iterator;
+
+public class NodeList<E> implements Iterable {
   private Node head;
   private Node tail;
   private int size;
@@ -110,6 +112,19 @@ public class NodeList<E> {
 
   public boolean empty() {
     return size == 0;
+  }
+
+  public Node head() {
+    return head;
+  }
+
+  public Node tail() {
+    return tail;
+  }
+
+  @Override
+  public Iterator iterator() {
+    return new NodeListIterator(this);
   }
 
   @Override
