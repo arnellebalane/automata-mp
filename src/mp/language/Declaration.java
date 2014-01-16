@@ -102,14 +102,25 @@ public class Declaration {
       String brackets = dataType.substring(arraySeparationIndex).trim();
       dataType = dataType.substring(0, arraySeparationIndex).trim();
       boolean opened = false;
+      boolean sizeRequired = false;
+      boolean sizeFound = false;
       for (int i = 0; i < brackets.length() && validArray; i++) {
         char character = brackets.charAt(i);
         if (character == '[' && !opened) {
           opened = true;
-        } else if (character == ']' && opened) {
+        } else if (character == ']' && opened && (!sizeRequired || (sizeRequired && sizeFound))) {
           opened = false;
+          sizeFound = false;
+        } else if (character == ']' && opened && sizeRequired && !sizeFound) {
+          validArray = false;
         } else {
-          validArray = digits.indexOf(character) >= 0 && opened;
+          if (digits.indexOf(character) >= 0 && opened) {
+            validArray = true;
+            sizeRequired = true;
+            sizeFound = true;
+          } else {
+            validArray = false;
+          }
         }
       }
     }
