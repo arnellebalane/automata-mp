@@ -46,7 +46,7 @@ public class Declaration {
   }
 
   public boolean valid() {
-    return validReturnType(returnType) && validIdentifier(identifier);
+    return validReturnType(returnType) && validIdentifier(identifier) && validParameters(parameters);
   }
 
   private boolean validReturnType(String returnType) {
@@ -62,6 +62,20 @@ public class Declaration {
       validIdentifier = characters.indexOf(character) >= 0 || digits.indexOf(character) >= 0;
     }
     return !validDataTypes.contains(identifier) && validIdentifier;
+  }
+
+  private boolean validParameters(String[] parameters) {
+    boolean validParameters = parameters != null;
+    for (int i = 0; i < parameters.length && validParameters; i++) {
+      int typeSeparationIndex = parameters[i].lastIndexOf("*");
+      if (typeSeparationIndex < 0) {
+        typeSeparationIndex = parameters[i].lastIndexOf(" ");
+      }
+      String dataType = (typeSeparationIndex == -1) ? parameters[i] : parameters[i].substring(0, typeSeparationIndex + 1).trim();
+      String identifer = (typeSeparationIndex == -1) ? "" : parameters[i].substring(typeSeparationIndex + 1).trim();
+      validParameters = validDataType(dataType) && validIdentifier(identifier);
+    }
+    return validParameters;
   }
 
   private boolean validDataType(String dataType) {
