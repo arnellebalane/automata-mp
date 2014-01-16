@@ -44,4 +44,52 @@ public class Declaration {
       System.out.println(parameters[i]);
     }
   }
+
+  public boolean valid() {
+    return validReturnType(returnType);
+  }
+
+  private boolean validReturnType(String returnType) {
+    return !isArray(returnType) && validDataType(returnType);
+  }
+
+  private boolean validDataType(String dataType) {
+    boolean validPointer = true;
+    boolean validArray = true;
+    if (isPointer(dataType)) {
+      int pointerSeparationIndex = dataType.indexOf("*");
+      String asterisks = dataType.substring(pointerSeparationIndex).trim();
+      dataType = dataType.substring(0, pointerSeparationIndex).trim();
+      for (int i = 0; i < asterisks.length() && validPointer; i++) {
+        char character = asterisks.charAt(i);
+        validPointer = character == '*' || character == ' ';
+      }
+    }
+    if (isArray(dataType)) {
+      String digits = "0123456789";
+      int arraySeparationIndex = dataType.indexOf("[");
+      String brackets = dataType.substring(arraySeparationIndex).trim();
+      dataType = dataType.substring(0, arraySeparationIndex).trim();
+      boolean opened = false;
+      for (int i = 0; i < brackets.length() && validArray; i++) {
+        char character = brackets.charAt(i);
+        if (character == '[' && !opened) {
+          opened = true;
+        } else if (character == ']' && opened) {
+          opened = false;
+        } else {
+          validArray = digits.indexOf(character) >= 0;
+        }
+      }
+    }
+    return validDataTypes.contains(dataType) && validPointer && validArray;
+  }
+
+  private boolean isArray(String dataType) {
+    return dataType.indexOf("[") >= 0 && dataType.indexOf("]") >= 0;
+  }
+
+  private boolean isPointer(String dataType) {
+    return dataType.indexOf("*") >= 0;
+  }
 }
