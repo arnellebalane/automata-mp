@@ -67,13 +67,19 @@ public class Declaration {
   private boolean validParameters(String[] parameters) {
     boolean validParameters = true;
     for (int i = 0; parameters != null && i < parameters.length && validParameters; i++) {
+      String brackets = "";
+      int arraySeparationIndex = parameters[i].indexOf("[");
+      if (arraySeparationIndex >= 0) {
+        brackets = parameters[i].substring(arraySeparationIndex).trim();
+        parameters[i] = parameters[i].substring(0, arraySeparationIndex).trim();
+      }
       int typeSeparationIndex = parameters[i].lastIndexOf("*");
       if (typeSeparationIndex < 0) {
         typeSeparationIndex = parameters[i].lastIndexOf(" ");
       }
-      String variableDataType = (typeSeparationIndex == -1) ? parameters[i] : parameters[i].substring(0, typeSeparationIndex + 1).trim();
-      String variableIdentifier = (typeSeparationIndex == -1) ? "" : parameters[i].substring(typeSeparationIndex + 1).trim();
-      validParameters = validDataType(variableDataType) && (variableIdentifier.length() == 0 || validIdentifier(variableIdentifier));
+      String parameterDataType = (typeSeparationIndex == -1) ? parameters[i] : parameters[i].substring(0, typeSeparationIndex + 1).trim();
+      String parameterIdentifier = (typeSeparationIndex == -1) ? "" : parameters[i].substring(typeSeparationIndex + 1).trim();
+      validParameters = validDataType(parameterDataType + brackets) && (parameterIdentifier.length() == 0 || validIdentifier(parameterIdentifier));
     }
     return validParameters;
   }
