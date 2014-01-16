@@ -29,7 +29,7 @@ public class Declaration {
     int parametersEnd = declaration.indexOf(")");
     String parametersString = declaration.substring(parametersStart + 1, parametersEnd).trim();
     parameters = (parametersString.length() == 0) ? null : parametersString.split(",");
-    declaration = declaration.substring(0, parametersStart);
+    declaration = declaration.substring(0, parametersStart).trim();
     int typeSeparationIndex = declaration.lastIndexOf("*");
     if (typeSeparationIndex < 0) {
       typeSeparationIndex = declaration.lastIndexOf(" ");
