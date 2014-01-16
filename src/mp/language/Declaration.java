@@ -35,13 +35,9 @@ public class Declaration {
       typeSeparationIndex = declaration.lastIndexOf(" ");
     }
     returnType = (typeSeparationIndex < 0) ? "" : declaration.substring(0, typeSeparationIndex + 1).trim();
-    identifier = declaration.substring(typeSeparationIndex + 1);
-
-    System.out.println(returnType);
-    System.out.println(identifier);
+    identifier = declaration.substring(typeSeparationIndex + 1).trim();
     for (int i = 0; parameters != null && i < parameters.length; i++) {
       parameters[i] = parameters[i].trim();
-      System.out.println(parameters[i]);
     }
   }
 
@@ -69,15 +65,15 @@ public class Declaration {
   }
 
   private boolean validParameters(String[] parameters) {
-    boolean validParameters = parameters != null;
-    for (int i = 0; i < parameters.length && validParameters; i++) {
+    boolean validParameters = true;
+    for (int i = 0; parameters != null && i < parameters.length && validParameters; i++) {
       int typeSeparationIndex = parameters[i].lastIndexOf("*");
       if (typeSeparationIndex < 0) {
         typeSeparationIndex = parameters[i].lastIndexOf(" ");
       }
-      String dataType = (typeSeparationIndex == -1) ? parameters[i] : parameters[i].substring(0, typeSeparationIndex + 1).trim();
-      String identifer = (typeSeparationIndex == -1) ? "" : parameters[i].substring(typeSeparationIndex + 1).trim();
-      validParameters = validDataType(dataType) && validIdentifier(identifier);
+      String variableDataType = (typeSeparationIndex == -1) ? parameters[i] : parameters[i].substring(0, typeSeparationIndex + 1).trim();
+      String variableIdentifier = (typeSeparationIndex == -1) ? "" : parameters[i].substring(typeSeparationIndex + 1).trim();
+      validParameters = validDataType(variableDataType) && (variableIdentifier.length() == 0 || validIdentifier(variableIdentifier));
     }
     return validParameters;
   }
