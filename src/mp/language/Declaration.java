@@ -5,6 +5,7 @@ import utilities.nodelist.NodeList;
 
 public class Declaration {
   public static NodeList validDataTypes;
+  private boolean valid;
   private String declaration;
   private String returnType;
   private String identifier;
@@ -14,12 +15,34 @@ public class Declaration {
     this.declaration = declaration.trim();
     validDataTypes = new NodeList();
     validDataTypes.insert("void");
+    validDataTypes.insert("char");
+    validDataTypes.insert("signed char");
+    validDataTypes.insert("unsigned char");
+    validDataTypes.insert("short");
+    validDataTypes.insert("short int");
+    validDataTypes.insert("signed short");
+    validDataTypes.insert("signed short int");
+    validDataTypes.insert("unsigned short");
+    validDataTypes.insert("unsigned short int");
     validDataTypes.insert("int");
+    validDataTypes.insert("signed int");
+    validDataTypes.insert("unsigned");
+    validDataTypes.insert("unsigned int");
     validDataTypes.insert("long");
+    validDataTypes.insert("long int");
+    validDataTypes.insert("signed long");
+    validDataTypes.insert("signed long int");
+    validDataTypes.insert("unsigned long");
+    validDataTypes.insert("unsigned long int");
     validDataTypes.insert("long long");
+    validDataTypes.insert("long long int");
+    validDataTypes.insert("signed long long");
+    validDataTypes.insert("signed long long int");
+    validDataTypes.insert("unsigned long long");
+    validDataTypes.insert("unsigned long long int");
     validDataTypes.insert("float");
     validDataTypes.insert("double");
-    validDataTypes.insert("char");
+    validDataTypes.insert("long double");
 
     parseFunction(declaration);
   }
@@ -27,26 +50,29 @@ public class Declaration {
   private void parseFunction(String declaration) {
     int parametersStart = declaration.indexOf("(");
     int parametersEnd = declaration.indexOf(")");
-    String parametersString = declaration.substring(parametersStart + 1, parametersEnd).trim();
-    parameters = (parametersString.length() == 0) ? null : parametersString.split(",");
-    declaration = declaration.substring(0, parametersStart).trim();
-    int typeSeparationIndex = declaration.lastIndexOf("*");
-    if (typeSeparationIndex < 0) {
-      typeSeparationIndex = declaration.lastIndexOf(" ");
-    }
-    returnType = (typeSeparationIndex < 0) ? "" : declaration.substring(0, typeSeparationIndex + 1).trim();
-    identifier = declaration.substring(typeSeparationIndex + 1).trim();
-    for (int i = 0; parameters != null && i < parameters.length; i++) {
-      parameters[i] = parameters[i].trim();
+    valid = parametersStart >= 0 && parametersEnd >= 0;
+    if (valid) {
+      String parametersString = declaration.substring(parametersStart + 1, parametersEnd).trim();
+      parameters = (parametersString.length() == 0) ? null : parametersString.split(",");
+      declaration = declaration.substring(0, parametersStart).trim();
+      int typeSeparationIndex = declaration.lastIndexOf("*");
+      if (typeSeparationIndex < 0) {
+        typeSeparationIndex = declaration.lastIndexOf(" ");
+      }
+      returnType = (typeSeparationIndex < 0) ? "" : declaration.substring(0, typeSeparationIndex + 1).trim();
+      identifier = declaration.substring(typeSeparationIndex + 1).trim();
+      for (int i = 0; parameters != null && i < parameters.length; i++) {
+        parameters[i] = parameters[i].trim();
+      }
     }
   }
 
   public boolean valid() {
     boolean validEnding = declaration.charAt(declaration.length() - 1) == ';';
-    for (int i = declaration.indexOf(")") + 1; i < declaration.length() - 1 && validEnding; i++) {
+    for (int i = declaration.indexOf(")") + 1; i >= 0 && i < declaration.length() - 1 && validEnding; i++) {
       validEnding = declaration.charAt(i) == ' ';
     }
-    return validReturnType(returnType) && validIdentifier(identifier) && validParameters(parameters) && validEnding;
+    return valid && validReturnType(returnType) && validIdentifier(identifier) && validParameters(parameters) && validEnding;
   }
 
   private boolean validReturnType(String returnType) {
