@@ -46,11 +46,22 @@ public class Declaration {
   }
 
   public boolean valid() {
-    return validReturnType(returnType);
+    return validReturnType(returnType) && validIdentifier(identifier);
   }
 
   private boolean validReturnType(String returnType) {
     return !isArray(returnType) && validDataType(returnType);
+  }
+
+  private boolean validIdentifier(String identifier) {
+    String characters = "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    String digits = "0123456789";
+    boolean validIdentifier = identifier.length() > 0 && digits.indexOf(identifier.charAt(0)) == -1;
+    for (int i = 0; i < identifier.length() && validIdentifier; i++) {
+      char character = identifier.charAt(i);
+      validIdentifier = characters.indexOf(character) >= 0 || digits.indexOf(character) >= 0;
+    }
+    return !validDataTypes.contains(identifier) && validIdentifier;
   }
 
   private boolean validDataType(String dataType) {
@@ -78,7 +89,7 @@ public class Declaration {
         } else if (character == ']' && opened) {
           opened = false;
         } else {
-          validArray = digits.indexOf(character) >= 0;
+          validArray = digits.indexOf(character) >= 0 && opened;
         }
       }
     }
