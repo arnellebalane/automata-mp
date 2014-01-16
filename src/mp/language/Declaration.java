@@ -46,7 +46,11 @@ public class Declaration {
   }
 
   public boolean valid() {
-    return validReturnType(returnType) && validIdentifier(identifier) && validParameters(parameters);
+    boolean validEnding = declaration.charAt(declaration.length() - 1) == ';';
+    for (int i = declaration.indexOf(")") + 1; i < declaration.length() - 1 && validEnding; i++) {
+      validEnding = declaration.charAt(i) == ' ';
+    }
+    return validReturnType(returnType) && validIdentifier(identifier) && validParameters(parameters) && validEnding;
   }
 
   private boolean validReturnType(String returnType) {
