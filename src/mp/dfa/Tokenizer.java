@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Tokenizer {
   public static ArrayList tokenize(String input) {
     ArrayList tokens = new ArrayList();
-    String delimeters = " &|(){}[],;+-*/=";
+    String delimeters = " &|(){}[]<>,;+-*/=";
     for (int i = 0; i < input.length(); i++) {
       String content = "" + input.charAt(i);
       if (delimeters.indexOf(content) < 0) {
