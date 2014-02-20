@@ -7,7 +7,7 @@ public class Validator {
   private DeterministicFiniteAutomaton dfa;
 
   public Validator() {
-    dfa = new DeterministicFiniteAutomaton(33, 33);
+    dfa = new DeterministicFiniteAutomaton(57, 33);
     dfa.initialState(0);
     dfa.transition(0, 1, 2).transition(0, 1, 3).transition(0, 1, 4).transition(0, 1, 5).transition(0, 1, 6).transition(0, 2, 7).transition(0, 4, 8).transition(0, 5, 0).transition(0, 5, 1).transition(0, 7, 9).transition(0, 28, 32);
     dfa.transition(1, 6, 25).transition(1, 7, 9);
@@ -38,10 +38,34 @@ public class Validator {
     dfa.transition(26, 25, 17);
     dfa.transition(27, 19, 18).transition(27, 20, 10);
     dfa.transition(28, 29, 13);
-    dfa.transition(29, 30, 22);
+    dfa.transition(29, 30, 22).transition(29, 33, 9).transition(29, 35, 10).transition(29, 49, 23).transition(29, 50, 24).transition(29, 51, 29);
     dfa.transition(30, 31, 22);
     dfa.transition(31, 32, 14);
     dfa.transition(32, 10, 22);
+    dfa.transition(33, 30, 22).transition(33, 34, 28).transition(33, 45, 25).transition(33, 45, 26).transition(33, 45, 27).transition(33, 47, 23).transition(33, 48, 24).transition(33, 52, 19).transition(33, 52, 20).transition(33, 52, 29).transition(33, 55, 21);
+    dfa.transition(34, 33, 9).transition(34, 35, 10).transition(34, 37, 23).transition(34, 53, 28).transition(34, 56, 24);
+    dfa.transition(35, 30, 22).transition(35, 36, 25).transition(35, 36, 26).transition(35, 36, 27).transition(35, 39, 23).transition(35, 40, 24).transition(35, 52, 19).transition(35, 52, 20).transition(35, 51, 29).transition(35, 54, 28).transition(35, 55, 21);
+    dfa.transition(36, 35, 10).transition(36, 37, 23).transition(36, 38, 9).transition(36, 56, 24);
+    dfa.transition(37, 35, 10).transition(37, 38, 9).transition(37, 51, 23);
+    dfa.transition(38, 30, 22).transition(38, 36, 25).transition(38, 36, 26).transition(38, 36, 27).transition(38, 41, 23).transition(38, 42, 24).transition(38, 52, 19).transition(38, 52, 20).transition(38, 52, 29).transition(38, 54, 28).transition(38, 55, 21);
+    dfa.transition(39, 35, 10).transition(39, 38, 9).transition(39, 56, 24);
+    dfa.transition(40, 35, 10).transition(40, 37, 23).transition(40, 38, 9);
+    dfa.transition(41, 35, 10).transition(41, 38, 9).transition(41, 43, 23).transition(41, 56, 24);
+    dfa.transition(42, 35, 10).transition(42, 37, 23).transition(42, 38, 9).transition(42, 44, 24);
+    dfa.transition(43, 30, 22).transition(43, 36, 25).transition(43, 36, 26).transition(43, 36, 27).transition(43, 39, 23).transition(43, 40, 24).transition(43, 52, 19).transition(43, 52, 20).transition(43, 52, 29).transition(43, 54, 28).transition(43, 55, 21);
+    dfa.transition(44, 30, 22).transition(44, 35, 25).transition(44, 35, 26).transition(44, 35, 27).transition(44, 39, 23).transition(44, 40, 24).transition(44, 52, 19).transition(44, 52, 20).transition(44, 52, 29).transition(44, 54, 28).transition(44, 55, 21);
+    dfa.transition(45, 35, 10).transition(45, 37, 23).transition(45, 46, 28).transition(45, 56, 24);
+    dfa.transition(46, 35, 10).transition(46, 37, 23).transition(46, 56, 24);
+    dfa.transition(47, 35, 10).transition(47, 43, 23).transition(47, 46, 28).transition(47, 56, 24);
+    dfa.transition(48, 35, 10).transition(48, 37, 23).transition(48, 44, 24).transition(48, 46, 28);
+    dfa.transition(49, 35, 10).transition(49, 51, 23);
+    dfa.transition(50, 35, 10).transition(50, 51, 24);
+    dfa.transition(51, 38, 9);
+    dfa.transition(52, 33, 9).transition(52, 35, 10).transition(52, 49, 23).transition(52, 50, 24).transition(52, 51, 29);
+    dfa.transition(53, 33, 9).transition(53, 35, 10).transition(53, 49, 23).transition(53, 50, 24).transition(53, 51, 29);
+    dfa.transition(54, 53, 28);
+    dfa.transition(55, 33, 9).transition(55, 35, 10).transition(55, 49, 23).transition(55, 50, 24).transition(55, 51, 29);
+    dfa.transition(56, 35, 10).transition(56, 38, 9).transition(56, 51, 24);
 
     int[] finalStates = {10};
     dfa.finalStates(finalStates);
@@ -130,6 +154,6 @@ public class Validator {
         return false;
       }
     }
-    return false;
+    return true;
   }
 }
