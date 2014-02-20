@@ -12,8 +12,8 @@ public class ValidatorTester {
     Iterator iterator = inputContents.iterator();
     while (iterator.hasNext()) {
       String input = (String) iterator.next();
-      ArrayList tokens = Tokenizer.tokenize(input);
-      inputs.add(tokens);
+      boolean valid = Validator.validate(input);
+      System.out.println((valid) ? "ACCEPTED" : "DENIED");
     }
   }
 }
