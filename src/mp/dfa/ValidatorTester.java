@@ -14,7 +14,7 @@ public class ValidatorTester {
       Validator validator = new Validator();
       String input = (String) iterator.next();
       boolean valid = validator.validate(input);
-      System.out.println(input + " : " + ((valid) ? "ACCEPTED" : "DENIED"));
+      System.out.println((valid) ? "ACCEPTED" : "DENIED");
     }
   }
 }

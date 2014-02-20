@@ -7,8 +7,9 @@ public class Validator {
   private DeterministicFiniteAutomaton dfa;
 
   public Validator() {
-    dfa = new DeterministicFiniteAutomaton(107, 33);
+    dfa = new DeterministicFiniteAutomaton(133, 33);
     dfa.initialState(0);
+    
     dfa.transition(0, 1, 2).transition(0, 1, 3).transition(0, 1, 4).transition(0, 1, 5).transition(0, 1, 6).transition(0, 2, 7).transition(0, 4, 8).transition(0, 5, 0).transition(0, 5, 1).transition(0, 7, 9).transition(0, 28, 32);
     dfa.transition(1, 6, 25).transition(1, 7, 9);
     dfa.transition(2, 1, 4).transition(2, 3, 7).transition(2, 6, 25).transition(2, 7, 9);
@@ -41,7 +42,7 @@ public class Validator {
     dfa.transition(29, 30, 22).transition(29, 33, 9).transition(29, 35, 10).transition(29, 49, 23).transition(29, 50, 24).transition(29, 51, 29);
     dfa.transition(30, 31, 22).transition(30, 57, 9).transition(30, 59, 10).transition(30, 73, 23).transition(30, 74, 24).transition(30, 75, 29);
     dfa.transition(31, 32, 14).transition(31, 83, 9).transition(31, 85, 10).transition(31, 99, 23).transition(31, 100, 24).transition(31, 101, 29);
-    dfa.transition(32, 10, 22);
+    dfa.transition(32, 10, 22).transition(32, 107, 15);
     dfa.transition(33, 30, 22).transition(33, 34, 28).transition(33, 45, 25).transition(33, 45, 26).transition(33, 45, 27).transition(33, 47, 23).transition(33, 48, 24).transition(33, 52, 19).transition(33, 52, 20).transition(33, 52, 29).transition(33, 55, 21);
     dfa.transition(34, 33, 9).transition(34, 35, 10).transition(34, 37, 23).transition(34, 53, 28).transition(34, 56, 24);
     dfa.transition(35, 30, 22).transition(35, 36, 25).transition(35, 36, 26).transition(35, 36, 27).transition(35, 39, 23).transition(35, 40, 24).transition(35, 52, 19).transition(35, 52, 20).transition(35, 51, 29).transition(35, 54, 28).transition(35, 55, 21);
@@ -116,6 +117,32 @@ public class Validator {
     dfa.transition(104, 103, 28);
     dfa.transition(105, 83, 9).transition(105, 85, 10).transition(105, 99, 23).transition(105, 100, 24).transition(105, 101, 29);
     dfa.transition(106, 85, 10).transition(106, 88, 9).transition(106, 101, 24);
+    dfa.transition(107, 10, 16).transition(107, 108, 9).transition(107, 110, 10).transition(107, 124, 23).transition(107, 125, 24).transition(107, 126, 29);
+    dfa.transition(108,132, 22).transition(108, 109, 28).transition(108, 120, 25).transition(108, 120, 26).transition(108, 120, 27).transition(108, 122, 23).transition(108, 123, 24).transition(108, 127, 19).transition(108, 127, 20).transition(108, 127, 29).transition(108, 130, 21);
+    dfa.transition(109, 108, 9).transition(109, 110, 10).transition(109, 112, 23).transition(109, 128, 28).transition(109, 131, 24);
+    dfa.transition(110,132, 22).transition(110, 111, 25).transition(110, 111, 26).transition(110, 111, 27).transition(110, 114, 23).transition(110, 115, 24).transition(110, 127, 19).transition(110, 127, 20).transition(110, 126, 29).transition(110, 129, 28).transition(110, 130, 21);
+    dfa.transition(111, 110, 10).transition(111, 112, 23).transition(111, 113, 9).transition(111, 131, 24);
+    dfa.transition(112, 110, 10).transition(112, 113, 9).transition(112, 126, 23);
+    dfa.transition(113,132, 22).transition(113, 111, 25).transition(113, 111, 26).transition(113, 111, 27).transition(113, 116, 23).transition(113, 117, 24).transition(113, 127, 19).transition(113, 127, 20).transition(113, 127, 29).transition(113, 129, 28).transition(113, 130, 21);
+    dfa.transition(114, 110, 10).transition(114, 113, 9).transition(114, 131, 24);
+    dfa.transition(115, 110, 10).transition(115, 112, 23).transition(115, 113, 9);
+    dfa.transition(116, 110, 10).transition(116, 113, 9).transition(116, 118, 23).transition(116, 131, 24);
+    dfa.transition(117, 110, 10).transition(117, 112, 23).transition(117, 113, 9).transition(117, 119, 24);
+    dfa.transition(118,132, 22).transition(118, 111, 25).transition(118, 111, 26).transition(118, 111, 27).transition(118, 114, 23).transition(118, 115, 24).transition(118, 127, 19).transition(118, 127, 20).transition(118, 127, 29).transition(118, 129, 28).transition(118, 130, 21);
+    dfa.transition(119,132, 22).transition(119, 110, 25).transition(119, 110, 26).transition(119, 110, 27).transition(119, 114, 23).transition(119, 115, 24).transition(119, 127, 19).transition(119, 127, 20).transition(119, 127, 29).transition(119, 129, 28).transition(119, 130, 21);
+    dfa.transition(120, 110, 10).transition(120, 112, 23).transition(120, 121, 28).transition(120, 131, 24);
+    dfa.transition(121, 110, 10).transition(121, 112, 23).transition(121, 131, 24);
+    dfa.transition(122, 110, 10).transition(122, 113, 9).transition(122, 118, 23).transition(122, 121, 28).transition(122, 131, 24);
+    dfa.transition(123, 110, 10).transition(123, 113, 9).transition(123, 112, 23).transition(123, 119, 24).transition(123, 121, 28);
+    dfa.transition(124, 110, 10).transition(124, 113, 9).transition(124, 126, 23);
+    dfa.transition(125, 110, 10).transition(125, 113, 9).transition(125, 126, 24);
+    dfa.transition(126, 113, 9);
+    dfa.transition(127, 108, 9).transition(127, 110, 10).transition(127, 124, 23).transition(127, 125, 24).transition(127, 126, 29).transition(127, 128, 28);
+    dfa.transition(128, 108, 9).transition(128, 110, 10).transition(128, 124, 23).transition(128, 125, 24).transition(128, 126, 29);
+    dfa.transition(129, 128, 28);
+    dfa.transition(130, 108, 9).transition(130, 110, 10).transition(130, 124, 23).transition(130, 125, 24).transition(130, 126, 29);
+    dfa.transition(131, 110, 10).transition(131, 113, 9).transition(131, 126, 24);
+    dfa.transition(132, 10, 16).transition(132, 108, 9).transition(132, 110, 10).transition(132, 124, 23).transition(132, 125, 24).transition(132, 126, 29);
 
     int[] finalStates = {10};
     dfa.finalStates(finalStates);

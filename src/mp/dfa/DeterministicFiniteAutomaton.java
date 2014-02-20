@@ -30,7 +30,6 @@ public class DeterministicFiniteAutomaton {
 
   public boolean read(int token) {
     currentState = dfa[currentState][token];
-//    System.out.println(token + " ==> " + currentState);
     return currentState >= 0;
   }
 
