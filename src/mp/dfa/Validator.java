@@ -7,9 +7,9 @@ public class Validator {
   private DeterministicFiniteAutomaton dfa;
 
   public Validator() {
-    dfa = new DeterministicFiniteAutomaton(28, 30);
+    dfa = new DeterministicFiniteAutomaton(33, 33);
     dfa.initialState(0);
-    dfa.transition(0, 1, 2).transition(0, 1, 3).transition(0, 1, 4).transition(0, 1, 5).transition(0, 1, 6).transition(0, 2, 7).transition(0, 4, 8).transition(0, 5, 0).transition(0, 5, 1).transition(0, 7, 9);
+    dfa.transition(0, 1, 2).transition(0, 1, 3).transition(0, 1, 4).transition(0, 1, 5).transition(0, 1, 6).transition(0, 2, 7).transition(0, 4, 8).transition(0, 5, 0).transition(0, 5, 1).transition(0, 7, 9).transition(0, 28, 32);
     dfa.transition(1, 6, 25).transition(1, 7, 9);
     dfa.transition(2, 1, 4).transition(2, 3, 7).transition(2, 6, 25).transition(2, 7, 9);
     dfa.transition(3, 1, 4).transition(3, 6, 25).transition(3, 7, 9);
@@ -37,6 +37,11 @@ public class Validator {
     dfa.transition(25, 20, 10).transition(25, 26, 18);
     dfa.transition(26, 25, 17);
     dfa.transition(27, 19, 18).transition(27, 20, 10);
+    dfa.transition(28, 29, 13);
+    dfa.transition(29, 30, 22);
+    dfa.transition(30, 31, 22);
+    dfa.transition(31, 32, 14);
+    dfa.transition(32, 10, 22);
 
     int[] finalStates = {10};
     dfa.finalStates(finalStates);
@@ -86,6 +91,9 @@ public class Validator {
       case "%": return 27;
       case "=": return 28;
       case "!": return 29;
+      case ".": return 30;
+      case "'": return 31;
+      case "for": return 32;
       default:
         if (validIdentifier(content)) {
           return 9;
