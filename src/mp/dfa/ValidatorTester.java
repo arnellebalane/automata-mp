@@ -7,7 +7,7 @@ import java.util.Iterator;
 public class ValidatorTester {
   public static void main(String[] args) {
     ArrayList inputContents = InputReader.read("inputs/mp/dfa/input.in");
-    ArrayList inputs = new ArrayList();
+    inputContents.remove(0);
 
     Iterator iterator = inputContents.iterator();
     while (iterator.hasNext()) {
