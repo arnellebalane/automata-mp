@@ -3,8 +3,8 @@ package mp.dfa;
 
 public class DeterministicFiniteAutomaton {
   private int[][] dfa;
-  private int initialState;
   private int[] finalStates;
+  private int currentState;
 
   public DeterministicFiniteAutomaton(int states, int tokens) {
     dfa = new int[states][tokens];
@@ -16,7 +16,7 @@ public class DeterministicFiniteAutomaton {
   }
 
   public void initialState(int initialState) {
-    this.initialState = initialState;
+    currentState = initialState;
   }
 
   public void finalStates(int[] finalStates) {
@@ -26,5 +26,23 @@ public class DeterministicFiniteAutomaton {
   public DeterministicFiniteAutomaton transition(int from, int to, int token) {
     dfa[from][token] = to;
     return this;
+  }
+
+  public boolean read(int token) {
+    currentState = dfa[currentState][token];
+    return currentState >= 0;
+  }
+
+  public boolean valid() {
+    return currentState >= 0;
+  }
+
+  public boolean correct() {
+    for (int i = 0; i < finalStates.length; i++) {
+      if (currentState == finalStates[i]) {
+        return valid();
+      }
+    }
+    return false;
   }
 }

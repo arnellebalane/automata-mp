@@ -11,9 +11,10 @@ public class ValidatorTester {
 
     Iterator iterator = inputContents.iterator();
     while (iterator.hasNext()) {
+      Validator validator = new Validator();
       String input = (String) iterator.next();
-      boolean valid = Validator.validate(input);
-      System.out.println((valid) ? "ACCEPTED" : "DENIED");
+      boolean valid = validator.validate(input);
+      System.out.println(input + " : " + ((valid) ? "ACCEPTED" : "DENIED"));
     }
   }
 }

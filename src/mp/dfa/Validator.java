@@ -1,13 +1,15 @@
 
 package mp.dfa;
 
+import java.util.ArrayList;
+
 public class Validator {
   private DeterministicFiniteAutomaton dfa;
 
   public Validator() {
-    dfa = new DeterministicFiniteAutomaton(14, 22);
+    dfa = new DeterministicFiniteAutomaton(28, 30);
     dfa.initialState(0);
-    dfa.transition(0, 1, 2).transition(0, 1, 3).transition(0, 1, 4).transition(0, 1, 5).transition(0, 1, 6).transition(0, 2, 7).transition(0, 4, 8).transition(0, 5, 0).transition(0, 5, 1);
+    dfa.transition(0, 1, 2).transition(0, 1, 3).transition(0, 1, 4).transition(0, 1, 5).transition(0, 1, 6).transition(0, 2, 7).transition(0, 4, 8).transition(0, 5, 0).transition(0, 5, 1).transition(0, 7, 9);
     dfa.transition(1, 6, 25).transition(1, 7, 9);
     dfa.transition(2, 1, 4).transition(2, 3, 7).transition(2, 6, 25).transition(2, 7, 9);
     dfa.transition(3, 1, 4).transition(3, 6, 25).transition(3, 7, 9);
@@ -40,8 +42,17 @@ public class Validator {
     dfa.finalStates(finalStates);
   }
 
-  public static boolean validate(String input) {
-    return true;
+  public boolean validate(String input) {
+    ArrayList tokens = Tokenizer.tokenize(input, " &|(){}[]<>,;+-*/=!%");
+    for (int i = 0; i < tokens.size() && dfa.valid(); i++) {
+      int token = indexify((Token) tokens.get(i));
+      if (token >= 0) {
+        dfa.read(token);
+      } else {
+        break;
+      }
+    }
+    return dfa.correct();
   }
 
   private int indexify(Token token) {
